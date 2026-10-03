@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yome Erbil | Family Mall</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Kufi+Arabic:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            kurdish: ['Noto Kufi Arabic', 'sans-serif'],
+            arabic: ['Noto Kufi Arabic', 'sans-serif'],
+            english: ['Plus Jakarta Sans', 'sans-serif'],
+            chinese: ['Noto Sans SC', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Themes */
+    body.theme-light { --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --accent: #f97316; }
+    body.theme-dark { --bg: #090d16; --card: #131c2e; --text: #f8fafc; --accent: #fb923c; }
+    body.theme-sky { --bg: #f0f9ff; --card: #ffffff; --text: #0369a1; --accent: #0284c7; }
+    body.theme-warm { --bg: #fbf7f4; --card: #ffffff; --text: #78350f; --accent: #d97706; }
+    body.theme-neon { --bg: #050505; --card: #121212; --text: #22c55e; --accent: #10b981; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .custom-card {
+      background-color: var(--card);
+    }
+    .accent-btn {
+      background-color: var(--accent);
+      color: #fff;
+    }
+  </style>
+</head>
+<body class="theme-light font-kurdish antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-opacity-80 border-b border-gray-200/20 custom-card">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl accent-btn flex items-center justify-center font-black text-xl shadow-lg">
+          Y
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight">YOME</h1>
+          <p class="text-[11px] opacity-60 font-semibold" data-i18n="location_sub">Family Mall • Erbil</p>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex items-center gap-2">
+        <!-- Language Switcher -->
+        <select id="langSelect" onchange="changeLang(this.value)" class="text-xs px-2.5 py-1.5 rounded-xl border border-gray-300/40 bg-transparent font-bold">
+          <option value="ku" class="text-black">کوردی</option>
+          <option value="ar" class="text-black">العربية</option>
+          <option value="en" class="text-black">English</option>
+          <option value="zh" class="text-black">中文</option>
+        </select>
+
+        <!-- Theme Switcher -->
+        <select id="themeSelect" onchange="changeTheme(this.value)" class="text-xs px-2.5 py-1.5 rounded-xl border border-gray-300/40 bg-transparent font-bold">
+          <option value="theme-light" class="text-black">Light ☀️</option>
+          <option value="theme-dark" class="text-black">Dark 🌙</option>
+          <option value="theme-sky" class="text-black">Sky 🌊</option>
+          <option value="theme-warm" class="text-black">Warm ☕</option>
+          <option value="theme-neon" class="text-black">Neon ⚡</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="max-w-5xl mx-auto px-4 pt-10 pb-8 text-center">
+    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-4 accent-btn opacity-90 shadow-sm" data-i18n="badge">
+      ✨ بەخێربێن بۆ یۆمێ هەولێر
+    </span>
+    <h2 class="text-3xl md:text-5xl font-black mb-4 leading-tight" data-i18n="hero_title">
+      تایبەتترین بەرهەمەکانی ڕۆژانە و جوانکاری
+    </h2>
+    <p class="max-w-xl mx-auto text-sm md:text-base opacity-75 mb-6" data-i18n="hero_desc">
+      دیاری، ئێکسسوارات، و خۆشترین خواردنەوە و شیرینییە کۆری و ژاپۆنییەکان لە فامیلی مۆڵ.
+    </p>
+    <div class="flex justify-center gap-3">
+      <button onclick="openModal()" class="px-6 py-2.5 rounded-2xl accent-btn font-bold shadow-lg hover:scale-105 active:scale-95 transition-all text-sm" data-i18n="cta_register">
+        دروستکردنی هەژمار
+      </button>
+      <a href="#products" class="px-6 py-2.5 rounded-2xl border border-gray-400/30 custom-card font-bold text-sm hover:scale-105 transition-all" data-i18n="cta_products">
+        سەیرکردنی کاڵاکان
+      </a>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="max-w-6xl mx-auto px-4 py-8">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-xl font-bold" data-i18n="sec_products">بەرهەمە بەناوبانگەکان</h3>
+      <span class="text-xs opacity-60 font-semibold" data-i18n="all_iqd">نرخەکان بە دینار</span>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- Item 1 -->
+      <div class="custom-card p-4 rounded-3xl border border-gray-200/20 shadow-sm flex flex-col justify-between">
+        <div class="h-32 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-4xl mb-3">
+          🎁
+        </div>
+        <h4 class="font-bold text-sm mb-1" data-i18n="prod_1">دیاری تایبەت</h4>
+        <p class="text-xs opacity-60 mb-3" data-i18n="prod_1_sub">دیزاینی ناوازە</p>
+        <span class="font-extrabold text-sm accent-btn px-3 py-1 rounded-xl text-center">8,500 IQD</span>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="custom-card p-4 rounded-3xl border border-gray-200/20 shadow-sm flex flex-col justify-between">
+        <div class="h-32 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-4xl mb-3">
+          🍜
+        </div>
+        <h4 class="font-bold text-sm mb-1" data-i18n="prod_2">ڕامینی کۆری</h4>
+        <p class="text-xs opacity-60 mb-3" data-i18n="prod_2_sub">تامی جیاواز و خۆش</p>
+        <span class="font-extrabold text-sm accent-btn px-3 py-1 rounded-xl text-center">4,000 IQD</span>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="custom-card p-4 rounded-3xl border border-gray-200/20 shadow-sm flex flex-col justify-between">
+        <div class="h-32 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-4xl mb-3">
+          🧸
+        </div>
+        <h4 class="font-bold text-sm mb-1" data-i18n="prod_3">بووکەڵەی یۆمێ</h4>
+        <p class="text-xs opacity-60 mb-3" data-i18n="prod_3_sub">قەبارەی مامناوەند</p>
+        <span class="font-extrabold text-sm accent-btn px-3 py-1 rounded-xl text-center">15,000 IQD</span>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="custom-card p-4 rounded-3xl border border-gray-200/20 shadow-sm flex flex-col justify-between">
+        <div class="h-32 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-4xl mb-3">
+          🥤
+        </div>
+        <h4 class="font-bold text-sm mb-1" data-i18n="prod_4">خواردنەوەی ئاسیایی</h4>
+        <p class="text-xs opacity-60 mb-3" data-i18n="prod_4_sub">تامی میوەی تازە</p>
+        <span class="font-extrabold text-sm accent-btn px-3 py-1 rounded-xl text-center">3,000 IQD</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Modal -->
+  <div id="authModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="custom-card max-w-sm w-full p-6 rounded-3xl shadow-2xl relative border border-gray-200/20 animate-scale">
+      <button onclick="closeModal()" class="absolute top-4 left-4 text-gray-400 hover:text-black dark:hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <h3 class="text-xl font-extrabold text-center mb-1" data-i18n="modal_title">دروستکردنی هەژمار</h3>
+      <p class="text-xs opacity-60 text-center mb-6" data-i18n="modal_sub">داخڵی هەژمارەکەت بە بۆ بەدەستهێنانی خاڵ</p>
+
+      <div class="space-y-3">
+        <button class="w-full py-2.5 px-4 rounded-2xl border border-gray-300/40 flex items-center justify-center gap-2 font-semibold text-xs hover:bg-black/5 dark:hover:bg-white/5 transition-all">
+          <i class="fa-brands fa-google text-red-500"></i> <span data-i18n="btn_google">بەردەوام بە بە گووگڵ</span>
+        </button>
+        <button class="w-full py-2.5 px-4 rounded-2xl border border-gray-300/40 flex items-center justify-center gap-2 font-semibold text-xs hover:bg-black/5 dark:hover:bg-white/5 transition-all">
+          <i class="fa-brands fa-apple text-current"></i> <span data-i18n="btn_apple">بەردەوام بە بە ئەپڵ</span>
+        </button>
+        <div class="relative flex items-center justify-center my-3">
+          <div class="border-t border-gray-300/30 w-full"></div>
+          <span class="bg-inherit px-2 text-[10px] opacity-40 uppercase">OR</span>
+        </div>
+        <input type="tel" placeholder="0750 000 0000" class="w-full py-2 px-3 rounded-2xl border border-gray-300/40 bg-transparent text-xs outline-none focus:border-orange-500 text-center font-bold" />
+        <button class="w-full py-2.5 rounded-2xl accent-btn font-bold text-xs shadow-md" data-i18n="btn_phone">
+          ناردنی کۆدی پشتڕاستکردنەوە
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200/20 py-6 mt-12 custom-card">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs opacity-70">
+      <p>© 2026 Yome Erbil. Family Mall, Ground Floor.</p>
+      <div class="flex items-center gap-4">
+        <a href="https://instagram.com" target="_blank" class="hover:text-orange-500"><i class="fa-brands fa-instagram text-base"></i></a>
+        <a href="https://tiktok.com" target="_blank" class="hover:text-orange-500"><i class="fa-brands fa-tiktok text-base"></i></a>
+        <a href="https://wa.me/" target="_blank" class="hover:text-orange-500"><i class="fa-brands fa-whatsapp text-base"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      ku: {
+        location_sub: "فامیلی مۆڵ • هەولێر",
+        badge: "✨ بەخێربێن بۆ یۆمێ هەولێر",
+        hero_title: "تایبەتترین بەرهەمەکانی ڕۆژانە و جوانکاری",
+        hero_desc: "دیاری، ئێکسسوارات، و خۆشترین خواردنەوە و شیرینییە کۆری و ژاپۆنییەکان لە فامیلی مۆڵ.",
+        cta_register: "دروستکردنی هەژمار",
+        cta_products: "سەیرکردنی کاڵاکان",
+        sec_products: "بەرهەمە بەناوبانگەکان",
+        all_iqd: "نرخەکان بە دینار",
+        prod_1: "دیاری تایبەت", prod_1_sub: "دیزاینی ناوازە",
+        prod_2: "ڕامینی کۆری", prod_2_sub: "تامی جیاواز و خۆش",
+        prod_3: "بووکەڵەی یۆمێ", prod_3_sub: "قەبارەی مامناوەند",
+        prod_4: "خواردنەوەی ئاسیایی", prod_4_sub: "تامی میوەی تازە",
+        modal_title: "دروستکردنی هەژمار",
+        modal_sub: "داخڵی هەژمارەکەت بە بۆ بەدەستهێنانی خاڵ",
+        btn_google: "بەردەوام بە بە گووگڵ",
+        btn_apple: "بەردەوام بە بە ئەپڵ",
+        btn_phone: "ناردنی کۆدی پشتڕاستکردنەوە"
+      },
+      ar: {
+        location_sub: "فاميلي مول • أربيل",
+        badge: "✨ أهلاً بكم في يومي أربيل",
+        hero_title: "أجمل المنتجات اليومية ومستحضرات العناية",
+        hero_desc: "هدايا، إكسسوارات، وأشهى المأكولات والمشروبات الكورية واليابانية في فاميلي مول.",
+        cta_register: "إنشاء حساب",
+        cta_products: "تصفح المنتجات",
+        sec_products: "المنتجات الأكثر طلباً",
+        all_iqd: "الأسعار بالدينار العراقي",
+        prod_1: "هدية مميزة", prod_1_sub: "تصميم أنيق",
+        prod_2: "رامن كوري", prod_2_sub: "نكهات شهية ومميزة",
+        prod_3: "دمية يومي", prod_3_sub: "حجم متوسط",
+        prod_4: "مشروب آسيوي", prod_4_sub: "بنكهات الفواكه",
+        modal_title: "تسجيل الدخول",
+        modal_sub: "سجل الآن لجمع النقاط والحصول على عروض",
+        btn_google: "المتابعة عبر Google",
+        btn_apple: "المتابعة عبر Apple",
+        btn_phone: "إرسال رمز التحقق"
+      },
+      en: {
+        location_sub: "Family Mall • Erbil",
+        badge: "✨ Welcome to Yome Erbil",
+        hero_title: "Unique Everyday Essentials & Lifestyle",
+        hero_desc: "Gifts, accessories, and the best Korean & Japanese snacks right inside Family Mall.",
+        cta_register: "Create Account",
+        cta_products: "Explore Products",
+        sec_products: "Featured Products",
+        all_iqd: "Prices in IQD",
+        prod_1: "Special Gift Box", prod_1_sub: "Exclusive Design",
+        prod_2: "Korean Ramen", prod_2_sub: "Delicious Flavors",
+        prod_3: "Yome Plush Toy", prod_3_sub: "Medium Size",
+        prod_4: "Asian Drink", prod_4_sub: "Fresh Fruit Taste",
+        modal_title: "Welcome to Yome",
+        modal_sub: "Sign in to earn rewards & discounts",
+        btn_google: "Continue with Google",
+        btn_apple: "Continue with Apple",
+        btn_phone: "Send Verification Code"
+      },
+      zh: {
+        location_sub: "Family Mall • 埃尔比勒",
+        badge: "✨ 欢迎光临 Yome 埃尔比勒",
+        hero_title: "精选潮流好物与品质生活",
+        hero_desc: "文创礼品、精致饰品与日韩热门零食，尽在 Family Mall。",
+        cta_register: "注册账户",
+        cta_products: "浏览商品",
+        sec_products: "热门推荐",
+        all_iqd: "价格均为第纳尔 (IQD)",
+        prod_1: "精美礼品盒", prod_1_sub: "高品质设计",
+        prod_2: "韩式拉面", prod_2_sub: "经典美味",
+        prod_3: "Yome 毛绒玩偶", prod_3_sub: "中号手感舒适",
+        prod_4: "亚洲特色果饮", prod_4_sub: "新鲜风味",
+        modal_title: "欢迎加入 Yome",
+        modal_sub: "登录即可获取会员积分与独家优惠",
+        btn_google: "通过 Google 登录",
+        btn_apple: "通过 Apple 登录",
+        btn_phone: "发送验证码"
+      }
+    };
+
+    function changeLang(lang) {
+      const html = document.documentElement;
+      if (lang === 'ku' || lang === 'ar') {
+        html.setAttribute('dir', 'rtl');
+        document.body.className = document.body.className.replace(/font-\w+/g, '') + ' font-kurdish';
+      } else {
+        html.setAttribute('dir', 'ltr');
+        document.body.className = document.body.className.replace(/font-\w+/g, '') + (lang === 'zh' ? ' font-chinese' : ' font-english');
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+    }
+
+    function changeTheme(theme) {
+      document.body.classList.remove('theme-light', 'theme-dark', 'theme-sky', 'theme-warm', 'theme-neon');
+      document.body.classList.add(theme);
+    }
+
+    function openModal() {
+      document.getElementById('authModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('authModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
