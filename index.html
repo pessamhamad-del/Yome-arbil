@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade 12 VIP | پۆلی ١٢</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- فۆنتی کوردی مۆدێرن -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: radial-gradient(circle at top, #1A132F 0%, #0B0813 100%);
+      min-height: 100vh;
+      color: #F3F4F6;
+    }
+  </style>
+</head>
+<body class="pb-24">
+
+  <!-- بەشی سەرەوە (Header & Profile Trigger) -->
+  <header class="w-full max-w-5xl mx-auto px-4 py-4 flex items-center justify-between border-b border-purple-900/40">
+    <!-- پڕۆفایل لە دەستە چەپ -->
+    <div id="profile-container" class="flex items-center gap-3">
+      <!-- لێرە لە ڕێگەی سکریپتەوە زانیاری دێت -->
+    </div>
+
+    <!-- ناوی پلاتفۆرم لە دەستە ڕاست -->
+    <div class="flex items-center gap-2">
+      <div class="text-right">
+        <h1 class="text-lg font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200">
+          GRADE 12 VIP
+        </h1>
+        <p class="text-[10px] text-gray-400">ناوەندی پێشکەوتووی خوێندکاران</p>
+      </div>
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-yellow-600 flex items-center justify-center font-black text-black text-sm shadow-lg shadow-amber-500/20">
+        ١٢
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 mt-6 space-y-8">
+
+    <!-- نامەی پێشوازی شاهانە -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-b from-[#241A42]/80 to-[#151028]/90 border border-purple-500/30 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+      <div class="max-w-2xl">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold text-amber-300 bg-amber-950/70 border border-amber-500/40 mb-3 shadow-[0_0_10px_rgba(245,158,11,0.2)]">
+          دەستپێکی سەرکەوتن ✨
+        </span>
+        <h2 class="text-xl sm:text-2xl font-black text-white leading-relaxed">
+          خوێندکاری خۆشەویست بەخێربێیت
+        </h2>
+        <p class="text-sm sm:text-base text-gray-300 mt-2 leading-relaxed">
+          ئەم سایتە دوای چەندین شەونخونی ئامادە کراوە بۆ ئاسانکاری قوتابیان، ئێستا لە شوێنی مەبەستیت فەرموون...
+        </p>
+
+        <!-- دوگمەکانی چوونەژوورەوە و خۆتۆمارکردن -->
+        <div id="auth-actions" class="mt-6 flex flex-wrap gap-3">
+          <button onclick="openAuthModal('login')" class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-black shadow-lg shadow-amber-500/20 transition-all">
+            چوونەژوورەوە
+          </button>
+          <button onclick="openAuthModal('register')" class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 text-purple-200 transition-all">
+            دروستکردنی هەژمار
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ژووری خوێندنی ڕاستەوخۆ (Study Tracker) -->
+    <section class="rounded-3xl bg-[#17122B] border border-purple-900/50 p-6 shadow-xl">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs text-amber-400 font-bold">ژووری تەرکیز و خوێندن ⏳</span>
+          <h3 class="text-lg font-black text-white mt-1">ئەم شێرە وا دەخوێنێت</h3>
+          <p class="text-xs text-gray-400 mt-1">سەیری بکەن وا داهاتووی دروست دەکات...</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-center px-4 py-2 bg-[#0E0A1D] rounded-2xl border border-purple-900/60">
+            <span class="text-xs text-gray-400 block">کاتی تۆ</span>
+            <span id="study-timer" class="text-xl font-black text-amber-300">00:00:00</span>
+          </div>
+          <button id="timer-btn" onclick="toggleStudyTimer()" class="px-5 py-3 rounded-2xl font-bold text-xs bg-purple-700 hover:bg-purple-600 text-white shadow-lg transition-all">
+            دەستپێکردن
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- هەردوو بەشی زانستی و وێژەیی لە تەنیشت یەک -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-black text-white">بەشە سەرەکییەکان</h3>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- زانستی -->
+        <div class="rounded-3xl bg-gradient-to-br from-[#1F173B] to-[#140F27] border border-purple-500/30 p-6 hover:border-amber-400/50 transition-all cursor-pointer">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">🔬</span>
+            <div>
+              <h4 class="text-lg font-bold text-white">بەشی زانستی</h4>
+              <p class="text-xs text-gray-400">تایبەت و هاوبەشەکان</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 bg-purple-950/80 rounded-lg text-xs text-purple-200 border border-purple-800/40">بیرکاری</span>
+            <span class="px-2.5 py-1 bg-purple-950/80 rounded-lg text-xs text-purple-200 border border-purple-800/40">فیزیا</span>
+            <span class="px-2.5 py-1 bg-purple-950/80 rounded-lg text-xs text-purple-200 border border-purple-800/40">کیمیا</span>
+            <span class="px-2.5 py-1 bg-purple-950/80 rounded-lg text-xs text-purple-200 border border-purple-800/40">زیندەزانی (ئەحیا)</span>
+            <span class="px-2.5 py-1 bg-cyan-950/80 rounded-lg text-xs text-cyan-300 border border-cyan-800/40">ئینگلیزی</span>
+            <span class="px-2.5 py-1 bg-cyan-950/80 rounded-lg text-xs text-cyan-300 border border-cyan-800/40">عەرەبی</span>
+            <span class="px-2.5 py-1 bg-cyan-950/80 rounded-lg text-xs text-cyan-300 border border-cyan-800/40">کوردی</span>
+            <span class="px-2.5 py-1 bg-cyan-950/80 rounded-lg text-xs text-cyan-300 border border-cyan-800/40">ئاین</span>
+          </div>
+        </div>
+
+        <!-- وێژەیی -->
+        <div class="rounded-3xl bg-gradient-to-br from-[#1F173B] to-[#140F27] border border-purple-500/30 p-6 hover:border-amber-400/50 transition-all cursor-pointer">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">📚</span>
+            <div>
+              <h4 class="text-lg font-bold text-white">بەشی وێژەیی</h4>
+              <p class="text-xs text-gray-400">تایبەت و هاوبەشەکان</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 bg-purple-950/80 rounded-lg text-xs text-purple-200 border border-purple-800/40">مێژوو</span>
+            <span class="px-2.5 py-1 bg-purple-950/80 rounded-lg text-xs text-purple-200 border border-purple-800/40">جوگرافیا</span>
+            <span class="px-2.5 py-1 bg-purple-950/80 rounded-lg text-xs text-purple-200 border border-purple-800/40">ئابوور</span>
+            <span class="px-2.5 py-1 bg-purple-950/80 rounded-lg text-xs text-purple-200 border border-purple-800/40">بیرکاری</span>
+            <span class="px-2.5 py-1 bg-cyan-950/80 rounded-lg text-xs text-cyan-300 border border-cyan-800/40">ئینگلیزی</span>
+            <span class="px-2.5 py-1 bg-cyan-950/80 rounded-lg text-xs text-cyan-300 border border-cyan-800/40">عەرەبی</span>
+            <span class="px-2.5 py-1 bg-cyan-950/80 rounded-lg text-xs text-cyan-300 border border-cyan-800/40">کوردی</span>
+            <span class="px-2.5 py-1 bg-cyan-950/80 rounded-lg text-xs text-cyan-300 border border-cyan-800/40">ئاین</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- بۆتی ژیر (لێرە هەموو وەڵامێ وەرگرە) -->
+    <section class="rounded-3xl bg-gradient-to-r from-[#21153E] via-[#1A1135] to-[#251747] border border-amber-500/40 p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-amber-300 bg-amber-950/80 border border-amber-500/50 mb-3">
+            بۆتی ژیر 🤖
+          </span>
+          <h3 class="text-xl font-black text-white">لێرە هەموو وەڵامێ وەرگرە</h3>
+          <p class="text-xs sm:text-sm text-gray-300 mt-2 max-w-lg">
+            مامۆستای تایبەتی خۆت بە زیرەکی دەستکرد؛ شیکردنەوەی وانەکان، دانانی پلانی خوێندن و وەڵامی پرسیارەکان.
+          </p>
+        </div>
+        <button onclick="handleBotClick()" class="px-6 py-3.5 rounded-2xl font-black text-sm bg-gradient-to-r from-amber-400 to-yellow-500 text-black shadow-lg shadow-amber-500/25 hover:scale-105 transition-all">
+          کردنەوەی چات 💬
+        </button>
+      </div>
+    </section>
+
+    <!-- پلانی شاهانە (VIP Pricing) -->
+    <section class="rounded-3xl bg-[#16112C] border border-purple-800/40 p-6 sm:p-8 shadow-xl">
+      <div class="text-center max-w-xl mx-auto mb-8">
+        <span class="text-xs font-bold text-amber-400">پلانی تایبەت</span>
+        <h3 class="text-2xl font-black text-white mt-1">بەشداریکردن لە پلانی شاهانە</h3>
+        <p class="text-xs text-gray-400 mt-2">دەستگەیشتن بە بۆتی ژیر، کورتکراوەی تایبەت و چاودێری خوێندن</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- ١ مانگ -->
+        <div class="rounded-2xl bg-[#0F0A20] border border-purple-900/60 p-5 text-center flex flex-col justify-between">
+          <div>
+            <h4 class="text-sm font-bold text-gray-300">پلانی ١ مانگ</h4>
+            <div class="text-2xl font-black text-amber-300 mt-3">١٥,٠٠٠ <span class="text-xs text-gray-400">دینار</span></div>
+          </div>
+          <button onclick="subscribeVIP('1 Month')" class="mt-6 w-full py-2.5 rounded-xl font-bold text-xs bg-purple-900/60 hover:bg-purple-800 text-purple-200 border border-purple-700/50">
+            داواکردن
+          </button>
+        </div>
+
+        <!-- ٣ مانگ (پێشنیارکراو) -->
+        <div class="rounded-2xl bg-gradient-to-b from-[#281A4F] to-[#130B27] border-2 border-amber-400/80 p-5 text-center flex flex-col justify-between relative shadow-xl shadow-amber-500/10">
+          <span class="absolute -top-3 right-1/2 translate-x-1/2 px-3 py-0.5 rounded-full text-[10px] font-black bg-amber-400 text-black">
+            پڕ داواکراو
+          </span>
+          <div>
+            <h4 class="text-sm font-bold text-white">پلانی ٣ مانگ</h4>
+            <div class="text-2xl font-black text-amber-300 mt-3">٣٠,٠٠٠ <span class="text-xs text-gray-400">دینار</span></div>
+          </div>
+          <button onclick="subscribeVIP('3 Months')" class="mt-6 w-full py-2.5 rounded-xl font-black text-xs bg-gradient-to-r from-amber-400 to-yellow-500 text-black shadow-lg">
+            داواکردن
+          </button>
+        </div>
+
+        <!-- ٦ مانگ -->
+        <div class="rounded-2xl bg-[#0F0A20] border border-purple-900/60 p-5 text-center flex flex-col justify-between">
+          <div>
+            <h4 class="text-sm font-bold text-gray-300">پلانی ٦ مانگ</h4>
+            <div class="text-2xl font-black text-amber-300 mt-3">٥٠,٠٠٠ <span class="text-xs text-gray-400">دینار</span></div>
+          </div>
+          <button onclick="subscribeVIP('6 Months')" class="mt-6 w-full py-2.5 rounded-xl font-bold text-xs bg-purple-900/60 hover:bg-purple-800 text-purple-200 border border-purple-700/50">
+            داواکردن
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- مۆداڵی چوونەژوورەوە و دروستکردنی هەژمار -->
+  <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="w-full max-w-md bg-[#181230] border border-purple-600/40 rounded-3xl p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-6">
+        <h3 id="modal-title" class="text-lg font-bold text-amber-300">چوونەژوورەوە</h3>
+        <button onclick="closeAuthModal()" class="text-gray-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <div class="space-y-4">
+        <div id="reg-fields" class="space-y-4 hidden">
+          <div>
+            <label class="block text-xs text-gray-300 mb-1">ناوی تەواو</label>
+            <input id="input-name" type="text" class="w-full bg-[#0E0A1D] border border-purple-800/60 rounded-xl px-4 py-2.5 text-xs text-white" placeholder="ناوی خۆت بنووسە...">
+          </div>
+          <div>
+            <label class="block text-xs text-gray-300 mb-1">بایۆ (Bio)</label>
+            <input id="input-bio" type="text" class="w-full bg-[#0E0A1D] border border-purple-800/60 rounded-xl px-4 py-2.5 text-xs text-white" placeholder="دەربارەی خۆت...">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-300 mb-1">ئیمەیڵ (Gmail)</label>
+          <input id="input-email" type="email" class="w-full bg-[#0E0A1D] border border-purple-800/60 rounded-xl px-4 py-2.5 text-xs text-white" placeholder="name@gmail.com">
+        </div>
+        <div>
+          <label class="block text-xs text-gray-300 mb-1">تێپەڕەوشە (پاسوۆرد)</label>
+          <input id="input-pass" type="password" class="w-full bg-[#0E0A1D] border border-purple-800/60 rounded-xl px-4 py-2.5 text-xs text-white" placeholder="••••••••">
+        </div>
+
+        <button onclick="submitAuth()" class="w-full py-3 rounded-xl font-bold text-xs bg-gradient-to-r from-amber-400 to-yellow-500 text-black shadow-lg shadow-amber-500/20 mt-2">
+          تەواوکردن
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- مۆداڵی ئاگاداری پلانی شاهانە بۆ بۆت -->
+  <div id="vip-notice-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="w-full max-w-md bg-[#1B1437] border border-amber-500/50 rounded-3xl p-6 text-center shadow-2xl">
+      <span class="text-4xl block mb-3">🌟</span>
+      <h3 class="text-lg font-black text-amber-300">سڵاو خوێندکاری ئازیز</h3>
+      <p class="text-xs sm:text-sm text-gray-200 mt-3 leading-relaxed">
+        ئەم بۆتە تەنها ئەم کاتە دەتوانیت بەکاری بهێنیت کە پلانی شاهانەت کڕیبێت. ئێمە شەونخونیمان کردووە بۆ کارئاسانی تۆ، و بۆ پەرەپێدانی زیاتر و پێشکەوتن بێگومان پارە پێویستە.
+      </p>
+      <div class="mt-4 p-3 bg-purple-950/60 rounded-xl border border-purple-700/40">
+        <p class="text-xs text-amber-300 font-bold">بۆ ماوەی ٣ مانگ تەنها ٢٥,٠٠٠ دینار</p>
+      </div>
+      <div class="mt-6 flex gap-3">
+        <button onclick="subscribeVIP('Bot VIP')" class="flex-1 py-3 rounded-xl font-bold text-xs bg-gradient-to-r from-amber-400 to-yellow-500 text-black shadow-lg">
+          ئێستا پلانی شاهانە بکڕە 👇🏻
+        </button>
+        <button onclick="closeVIPNotice()" class="px-4 py-3 rounded-xl font-bold text-xs bg-purple-950 text-gray-300 border border-purple-800/40">
+          داخستن
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- جاڤاسکریپت: هەژمار، تایمەر، و باجەکان -->
+  <script>
+    // بەکارهێنەری دیاریکراو (Default هەژماری تۆیە وەک Owner)
+    let currentUser = JSON.parse(localStorage.getItem('g12_user')) || {
+      name: 'عومەر',
+      email: 'owner@grade12.vip',
+      role: 'owner',
+      bio: 'دامەزرێنەر و خاوەنی پلاتفۆرمی پۆلی ١٢',
+      avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=owner'
+    };
+
+    let timerInterval = null;
+    let timerSeconds = 0;
+    let isTimerRunning = false;
+    let currentAuthMode = 'login';
+
+    function renderProfile() {
+      const container = document.getElementById('profile-container');
+      const authActions = document.getElementById('auth-actions');
+
+      if (currentUser) {
+        let badgeHtml = '';
+        if (currentUser.role === 'owner') {
+          badgeHtml = '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-black text-amber-300 bg-amber-950/80 border border-amber-500/70 shadow-[0_0_12px_rgba(245,158,11,0.4)]">Owner 👑</span>';
+        } else if (currentUser.role === 'super_admin') {
+          badgeHtml = '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-black text-yellow-300 bg-yellow-950/80 border border-yellow-500/60">Super admin 👑</span>';
+        } else if (currentUser.role === 'premium') {
+          badgeHtml = '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-black text-purple-200 bg-purple-950/80 border border-purple-500/60 shadow-[0_0_12px_rgba(168,85,247,0.4)]">Premium 💎</span>';
+        } else {
+          badgeHtml = '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium text-cyan-300 bg-cyan-950/70 border border-cyan-500/50">Student 🎓</span>';
+        }
+
+        container.innerHTML = `
+          <div class="flex items-center gap-3 bg-[#15102A] px-3 py-1.5 rounded-2xl border border-purple-800/40">
+            <img src="${currentUser.avatar}" class="w-9 h-9 rounded-full border border-amber-400 object-cover" />
+            <div>
+              <div class="text-xs font-bold text-white">${currentUser.name}</div>
+              <div class="mt-0.5">${badgeHtml}</div>
+            </div>
+          </div>
+        `;
+        authActions.classList.add('hidden');
+      } else {
+        container.innerHTML = `
+          <button onclick="openAuthModal('login')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-400 text-black">
+            چوونەژوورەوە
+          </button>
+        `;
+        authActions.classList.remove('hidden');
+      }
+    }
+
+    // Auth Modal
+    function openAuthModal(mode) {
+      currentAuthMode = mode;
+      document.getElementById('modal-title').innerText = mode === 'login' ? 'چوونەژوورەوە' : 'دروستکردنی هەژمار';
+      document.getElementById('reg-fields').classList.toggle('hidden', mode === 'login');
+      document.getElementById('auth-modal').classList.remove('hidden');
+      document.getElementById('auth-modal').classList.add('flex');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('auth-modal').classList.add('hidden');
+      document.getElementById('auth-modal').classList.remove('flex');
+    }
+
+    function submitAuth() {
+      const email = document.getElementById('input-email').value || 'student@gmail.com';
+      const name = document.getElementById('input-name').value || 'خوێندکاری نوێ';
+      const bio = document.getElementById('input-bio').value || 'قوتابی پۆلی ١٢';
+
+      currentUser = {
+        name: name,
+        email: email,
+        role: 'student',
+        bio: bio,
+        avatar: 'https://api.dicebear.com/7.x/bottts/svg?seed=' + encodeURIComponent(name)
+      };
+
+      localStorage.setItem('g12_user', JSON.stringify(currentUser));
+      closeAuthModal();
+      renderProfile();
+    }
+
+    // VIP Notice
+    function handleBotClick() {
+      if (currentUser && (currentUser.role === 'owner' || currentUser.role === 'super_admin' || currentUser.role === 'premium')) {
+        alert('بەخێربێیت بۆ چاتی تایبەتی بۆتی ژیر!');
+      } else {
+        document.getElementById('vip-notice-modal').classList.remove('hidden');
+        document.getElementById('vip-notice-modal').classList.add('flex');
+      }
+    }
+
+    function closeVIPNotice() {
+      document.getElementById('vip-notice-modal').classList.add('hidden');
+      document.getElementById('vip-notice-modal').classList.remove('flex');
+    }
+
+    function subscribeVIP(plan) {
+      // گواستنەوە بۆ تێلیگرام
+      window.open('https://t.me/telegram', '_blank');
+    }
+
+    // Study Timer & Auto-pause when tab changes
+    function updateTimerDisplay() {
+      const hrs = String(Math.floor(timerSeconds / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((timerSeconds % 3600) / 60)).padStart(2, '0');
+      const secs = String(timerSeconds % 60).padStart(2, '0');
+      document.getElementById('study-timer').innerText = `${hrs}:${mins}:${secs}`;
+    }
+
+    function toggleStudyTimer() {
+      const btn = document.getElementById('timer-btn');
+      if (isTimerRunning) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        btn.innerText = 'دەستپێکردن';
+        btn.className = 'px-5 py-3 rounded-2xl font-bold text-xs bg-purple-700 hover:bg-purple-600 text-white shadow-lg transition-all';
+      } else {
+        isTimerRunning = true;
+        btn.innerText = 'ڕاگرتن';
+        btn.className = 'px-5 py-3 rounded-2xl font-bold text-xs bg-amber-500 hover:bg-amber-400 text-black shadow-lg transition-all';
+        timerInterval = setInterval(() => {
+          timerSeconds++;
+          updateTimerDisplay();
+        }, 1000);
+      }
+    }
+
+    // وەستانی ئۆتۆماتیکی لە کاتی چوونە دەرەوە لە تاب یان وێبگەڕ
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && isTimerRunning) {
+        toggleStudyTimer();
+      }
+    });
+
+    // دەستپێکردن لەگەڵ لۆدبوونی لاپەڕە
+    renderProfile();
+  </script>
+</body>
+</html>
